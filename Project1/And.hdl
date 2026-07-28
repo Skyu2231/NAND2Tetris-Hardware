@@ -1,4 +1,4 @@
-//this is hdl code for and gate from nand gate
+//this is hdl code for AND gate from NAND gate
 CHIP And {
     IN a, b;    
     OUT out;
