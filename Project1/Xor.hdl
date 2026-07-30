@@ -1,0 +1,12 @@
+//this is hdl code for Xor gate from elementary gates.
+CHIP Xor {
+    IN a, b;
+    OUT out;
+
+    PARTS:
+    And(a= a, b=notb , out=aAndNotb );
+    And(a=b, b=nota , out=bAndNotb );
+    Not(in=b, out=notb );
+    Not(in=a, out=nota );
+    Or(a=aAndNotb , b= bAndNotb, out=out );
+}
