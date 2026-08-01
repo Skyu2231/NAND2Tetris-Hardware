@@ -82,7 +82,7 @@ More chips will be added soon.
 
 ---
 
-# 🚧 Upcoming Projects
+# Upcoming Projects
 
 - [ ] Add16
 - [ ] Inc16
