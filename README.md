@@ -99,7 +99,7 @@ More chips will be added soon.
 
 ---
 
-# 🧠 Explanation Format
+# 🧠 Explanation Format( in progress )
 
 Every chip will eventually include:
 
