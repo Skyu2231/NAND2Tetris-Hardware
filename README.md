@@ -4,7 +4,7 @@
 
 ---
 
-## 📖 About
+## About
 
 This repository contains my solutions for the **NAND2Tetris** course projects.
 
@@ -55,7 +55,7 @@ As I progress through the course, I will continuously update this repository wit
 
 # Completed Projects
 
-## ✅ Project 1 – Boolean Logic
+## Project 1 – Boolean Logic
 
 | Chip | Status | Description |
 |------|:------:|-------------|
@@ -71,7 +71,7 @@ As I progress through the course, I will continuously update this repository wit
 
 ---
 
-## ✅ Project 2 – Boolean Arithmetic
+## Project 2 – Boolean Arithmetic
 
 | Chip | Status | Description |
 |------|:------:|-------------|
@@ -99,7 +99,7 @@ More chips will be added soon.
 
 ---
 
-# 🧠 Explanation Format( in progress )
+# Explanation Format( in progress )
 
 Every chip will eventually include:
 
@@ -135,7 +135,7 @@ This makes it easier to understand the implementation rather than memorizing the
 
 ---
 
-# 🛠 Requirements
+# Requirements
 
 - NAND2Tetris Hardware Simulator
 - HDL files provided in the course
@@ -144,7 +144,7 @@ Download from the official NAND2Tetris website.
 
 ---
 
-# ▶️ How to Use
+# How to Use
 
 1. Clone the repository
 
@@ -162,7 +162,7 @@ git clone https://github.com/Skyu2231/NAND2Tetris-Hardware.git
 
 ---
 
-# 📖 Learning Resources
+# Learning Resources
 
 - Official NAND2Tetris Course
 - NAND2Tetris Book:
@@ -170,7 +170,7 @@ git clone https://github.com/Skyu2231/NAND2Tetris-Hardware.git
 
 ---
 
-# ⚠️ Note for Students
+# Note for Students
 
 This repository is intended as a **learning resource**.
 
@@ -184,7 +184,7 @@ You'll learn much more that way.
 
 ---
 
-# 🤝 Contributions
+# Contributions
 
 Suggestions, improvements, and corrections are always welcome.
 
@@ -201,7 +201,7 @@ Feel free to open an issue or submit a pull request.
 
 
 
-# 📅 Progress
+# Progress
 
 | Project | Status |
 |----------|:------:|
@@ -217,10 +217,10 @@ Feel free to open an issue or submit a pull request.
 
 ---
 
-## 📜 License
+## License
 
 This repository is released under the MIT License.
 
 ---
 
-### Happy Learning! 🚀
+### Lesss Go!!!
