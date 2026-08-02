@@ -1,18 +1,20 @@
 # Project 2 – Boolean Arithmetic
 
 > **Navigation**
->
-> **Home:** [System-Hardware](../README.md)  
-> **Previous Project:** [Project 1 – Boolean Logic](../Project1-Boolean_Logic/README.md)  
-> **Next Project:** [Project 3 – Sequential Logic](../Project3-Sequential_Logic/README.md)
+
+- **Home:** [System-Hardware](../README.md)
+- **Previous Project:** [Project 1 – Boolean Logic](../Project1-Boolean_Logic/README.md)
+- **Next Project:** [Project 3 – Sequential Logic](../Project3-Sequential_Logic/README.md)
 
 ---
 
 # Overview
 
-Project 2 builds upon the logic gates developed in **Project 1** to construct arithmetic circuits capable of performing binary computations.
+Project 2 introduces arithmetic circuit design using the logic gates developed in **Project 1**.
 
-Arithmetic operations in digital computers are implemented entirely using logic gates. This project introduces the fundamental building blocks required to perform binary addition and eventually construct the **Arithmetic Logic Unit (ALU)**, one of the most important components of a CPU.
+The objective is to design circuits capable of performing binary arithmetic operations. Beginning with simple one-bit adders, the project gradually builds toward the **Arithmetic Logic Unit (ALU)**, which serves as the computational core of the Hack CPU.
+
+These circuits demonstrate how complex arithmetic operations can be constructed by combining simpler hardware components.
 
 ---
 
@@ -20,29 +22,53 @@ Arithmetic operations in digital computers are implemented entirely using logic 
 
 After completing this project, you should be able to:
 
-- Understand binary addition.
+- Understand binary arithmetic.
 - Design combinational arithmetic circuits.
-- Learn carry propagation.
-- Build larger circuits using smaller reusable components.
-- Understand the architecture and functionality of an ALU.
+- Learn carry propagation in binary addition.
+- Build larger circuits using hierarchical design.
+- Understand the internal architecture of an ALU.
+- Appreciate how arithmetic operations are implemented entirely in hardware.
+
+---
+
+# Project Structure
+
+```text
+Project2-Boolean_Arithmetic
+│
+├── README.md
+│
+├── assets
+│   ├── halfadder
+│   ├── fulladder
+│   ├── add16
+│   ├── inc16
+│   └── alu
+│
+├── HalfAdder.hdl
+├── FullAdder.hdl
+├── Add16.hdl
+├── Inc16.hdl
+└── ALU.hdl
+```
 
 ---
 
 # Chips Implemented
 
-| Chip | Description | Status |
-|-------|-------------|:------:|
-| HalfAdder | Adds two binary bits | Complete |
-| FullAdder | Adds three binary bits (including carry) | Complete |
-| Add16 | Adds two 16-bit binary numbers | Complete |
-| Inc16 | Increments a 16-bit value by one | Complete |
-| ALU | Performs arithmetic and logical operations | Complete |
+| Chip | Description |
+|------|-------------|
+| HalfAdder | Adds two single-bit binary numbers |
+| FullAdder | Adds three binary inputs including carry |
+| Add16 | Adds two 16-bit binary numbers |
+| Inc16 | Increments a 16-bit value by one |
+| ALU | Performs arithmetic and logical operations |
 
 ---
 
 # Binary Arithmetic
 
-Digital computers perform arithmetic using binary numbers.
+Computers represent numbers using **binary digits (bits)**.
 
 ```
 Decimal : 0 1 2 3 4 5
@@ -50,7 +76,7 @@ Decimal : 0 1 2 3 4 5
 Binary  : 0 1 10 11 100 101
 ```
 
-Unlike decimal arithmetic, binary addition only involves two digits:
+Unlike decimal arithmetic, binary addition only uses two digits:
 
 ```
 0
@@ -58,7 +84,7 @@ Unlike decimal arithmetic, binary addition only involves two digits:
 1
 ```
 
-Whenever the sum exceeds **1**, a **Carry** is generated.
+Whenever the sum exceeds **1**, a carry is generated.
 
 Example:
 
@@ -69,7 +95,7 @@ Example:
  10
 ```
 
-This principle forms the basis of every arithmetic circuit.
+The arithmetic circuits in this project automate this process using combinations of logic gates.
 
 ---
 
@@ -77,13 +103,13 @@ This principle forms the basis of every arithmetic circuit.
 
 ---
 
-# Half Adder
+# HalfAdder
 
 ## Theory
 
-A Half Adder adds two single-bit binary inputs.
+The Half Adder is the simplest arithmetic circuit.
 
-It produces:
+It adds two one-bit binary numbers and produces:
 
 - Sum
 - Carry
@@ -91,72 +117,103 @@ It produces:
 ### Boolean Expressions
 
 ```
-Sum = A XOR B
+Sum   = A XOR B
 
 Carry = A AND B
 ```
 
-### HDL Design Idea
+---
 
-The Half Adder combines one XOR gate and one AND gate.
+## Truth Table
+
+<p align="center">
+<img src="./assets/halfadder/truth-table.png" width="450">
+</p>
 
 ---
 
-### Truth Table
+## Circuit Diagram
 
-> **Insert Truth Table Here**
-
----
-
-### Circuit Diagram
-
-> **Insert Circuit Diagram Here**
+<p align="center">
+<img src="./assets/halfadder/circuit-diagram.png" width="500">
+</p>
 
 ---
 
-# Full Adder
+## HDL Design
+
+The Half Adder is implemented by combining:
+
+- One XOR gate
+- One AND gate
+
+The XOR gate computes the Sum, while the AND gate generates the Carry.
+
+---
+
+## Real-World Applications
+
+- Binary addition
+- Arithmetic circuits
+- Ripple Carry Adders
+- CPU datapaths
+
+---
+
+# FullAdder
 
 ## Theory
 
-A Full Adder extends the Half Adder by including an additional **Carry-In** input.
+The Full Adder extends the Half Adder by introducing a third input called **Carry-In**.
 
-Inputs:
-
-- A
-- B
-- Carry-In
-
-Outputs:
-
-- Sum
-- Carry-Out
-
-This allows multiple adders to be connected together to perform multi-bit addition.
+It allows multiple adders to be chained together for multi-bit addition.
 
 ### Boolean Expressions
 
 ```
 Sum = A XOR B XOR CarryIn
 
-Carry = (A AND B)
-      OR (CarryIn AND (A XOR B))
+CarryOut =
+(A AND B)
+OR
+(CarryIn AND (A XOR B))
 ```
 
-### HDL Design Idea
+---
 
-Constructed by connecting **two Half Adders** followed by an OR gate.
+## Truth Table
+
+<p align="center">
+<img src="./assets/fulladder/truth-table.png" width="500">
+</p>
 
 ---
 
-### Truth Table
+## Circuit Diagram
 
-> **Insert Truth Table Here**
+<p align="center">
+<img src="./assets/fulladder/circuit-diagram.png" width="550">
+</p>
 
 ---
 
-### Circuit Diagram
+## HDL Design
 
-> **Insert Circuit Diagram Here**
+The Full Adder is built using:
+
+- Two Half Adders
+- One OR gate
+
+This hierarchical implementation keeps the design modular and reusable.
+
+---
+
+## Real-World Applications
+
+- Multi-bit addition
+- CPU arithmetic
+- Digital calculators
+- Arithmetic processors
 
 ---
 
@@ -164,23 +221,38 @@ Constructed by connecting **two Half Adders** followed by an OR gate.
 
 ## Theory
 
-Add16 performs the addition of two **16-bit binary numbers**.
+Add16 performs the addition of two 16-bit binary numbers.
 
-Instead of adding all bits simultaneously, the addition is carried out one bit at a time while propagating the carry to the next stage.
+Instead of adding all sixteen bits simultaneously, addition is carried out sequentially while propagating the carry from one stage to the next.
 
 This architecture is known as a **Ripple Carry Adder**.
 
-### HDL Design Idea
+---
 
-- Use one Half Adder for the least significant bit.
-- Chain fifteen Full Adders.
-- Carry propagates from the least significant bit to the most significant bit.
+## Circuit Diagram
+
+<p align="center">
+<img src="./assets/add16/circuit-diagram.png" width="650">
+</p>
 
 ---
 
-### Circuit Diagram
+## HDL Design
 
-> **Insert Circuit Diagram Here**
+Implementation strategy:
+
+- One Half Adder handles the least significant bit.
+- Fifteen Full Adders complete the remaining additions.
+- Each Carry-Out connects to the next Carry-In.
+
+---
+
+## Real-World Applications
+
+- Integer arithmetic
+- CPU execution units
+- Address calculations
+- Memory indexing
 
 ---
 
@@ -188,7 +260,7 @@ This architecture is known as a **Ripple Carry Adder**.
 
 ## Theory
 
-Inc16 increments a 16-bit binary number by **1**.
+Inc16 increments a 16-bit binary number by one.
 
 Mathematically,
 
@@ -196,21 +268,32 @@ Mathematically,
 Output = Input + 1
 ```
 
-Incrementers are frequently used in processors for:
-
-- Program Counters
-- Memory Addresses
-- Loop Counters
-
-### HDL Design Idea
-
-Implemented using the Add16 circuit by adding a constant value of one.
+Incrementers are frequently used for counters and program counters.
 
 ---
 
-### Circuit Diagram
+## Circuit Diagram
 
-> **Insert Circuit Diagram Here**
+<p align="center">
+<img src="./assets/inc16/circuit-diagram.png" width="600">
+</p>
+
+---
+
+## HDL Design
+
+The implementation reuses Add16 by adding a constant binary value of one.
+
+This demonstrates the principle of hardware reuse.
+
+---
+
+## Real-World Applications
+
+- Program Counter (PC)
+- Memory addressing
+- Loop counters
+- Instruction sequencing
 
 ---
 
@@ -218,85 +301,85 @@ Implemented using the Add16 circuit by adding a constant value of one.
 
 ## Theory
 
-The Arithmetic Logic Unit (ALU) is the computational core of the Hack CPU.
+The Arithmetic Logic Unit (ALU) is the computational core of the Hack computer.
 
-It performs both arithmetic and logical operations based on six control bits.
+It performs both arithmetic and logical operations depending on six control bits.
 
 The ALU can:
 
 - Zero an input
 - Negate an input
 - Perform bitwise AND
-- Perform addition
+- Perform binary addition
 - Negate the output
 - Produce Zero and Negative status flags
 
-Every arithmetic instruction executed by the CPU eventually passes through the ALU.
+Nearly every instruction executed by the CPU passes through the ALU.
 
 ---
 
-## ALU Control Bits
+## ALU Block Diagram
 
-| Control Bit | Purpose |
-|--------------|---------|
-| zx | Zero the x input |
-| nx | Negate x |
-| zy | Zero the y input |
-| ny | Negate y |
-| f | Select AND or ADD |
-| no | Negate output |
+<p align="center">
+<img src="./assets/alu/block-diagram.png" width="700">
+</p>
 
 ---
 
-### HDL Design Idea
+## ALU Control Table
 
-The ALU is constructed hierarchically using:
+<p align="center">
+<img src="./assets/alu/control-table.png" width="700">
+</p>
+
+---
+
+## HDL Design
+
+The ALU combines several previously implemented chips, including:
 
 - Add16
-- And16
 - Mux16
+- And16
 - Not16
 - Or8Way
 
-Each control bit enables or disables specific operations, allowing a single circuit to perform multiple functions.
+By enabling or disabling specific control bits, the ALU can perform multiple arithmetic and logical operations using the same hardware.
 
 ---
 
-### ALU Architecture
+## Real-World Applications
 
-> **Insert ALU Block Diagram Here**
-
----
-
-### ALU Truth Table / Control Table
-
-> **Insert ALU Control Table Here**
+- CPU execution
+- Arithmetic instructions
+- Logical instructions
+- Address computation
+- Comparison operations
 
 ---
 
 # Common Mistakes
 
-- Forgetting to propagate the carry in Full Adders.
+- Forgetting carry propagation in Full Adders.
 - Confusing Half Adders with Full Adders.
 - Incorrect bit ordering in Add16.
-- Misunderstanding the ALU control bits.
+- Misinterpreting the ALU control bits.
 - Ignoring the Zero and Negative output flags.
-- Mixing arithmetic addition with bitwise operations.
 
 ---
 
 # Key Takeaways
 
-By the end of this project, you will understand:
+After completing this project, you should understand:
 
-- Binary arithmetic
+- Binary addition
 - Carry propagation
 - Ripple Carry Adders
-- Increment circuits
-- Hierarchical chip design
-- The architecture of the Hack ALU
+- Hierarchical hardware design
+- Arithmetic circuit construction
+- Internal architecture of the Hack ALU
 
-These concepts prepare you for **Project 3 – Sequential Logic**, where memory elements such as registers, flip-flops, and counters are introduced.
+These concepts provide the foundation for **Project 3 – Sequential Logic**, where memory elements, registers, and clocked circuits are introduced.
 
 ---
 
