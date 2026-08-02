@@ -1,0 +1,43 @@
+//This is hdl code for Hack-ALU
+CHIP ALU {
+    IN
+        x[16], y[16],
+        zx, nx,
+        zy, ny,
+        f, no;
+
+    OUT
+        out[16],
+        zr,
+        ng;
+
+    PARTS:
+    Mux16(a=x, b=false, sel=zx, out=xZeroed);
+    Not16(in=xZeroed, out=xNot);
+    Mux16(a=xZeroed, b=xNot, sel=nx, out=xFinal);
+
+    Mux16(a=y, b=false, sel=zy, out=yZeroed);
+    Not16(in=yZeroed, out=yNot);
+    Mux16(a=yZeroed, b=yNot, sel=ny, out=yFinal);
+
+    And16(a=xFinal, b=yFinal, out=andOut);
+    Add16(a=xFinal, b=yFinal, out=addOut);
+    Mux16(a=andOut, b=addOut, sel=f, out=funcOut);
+
+    Not16(in=funcOut, out=notOut);
+    Mux16(
+        a=funcOut,
+        b=notOut,
+        sel=no,
+        out=out,
+        out[0..7]=low,
+        out[8..15]=high,
+        out[15]=ng
+    );
+    //In the chartflow I have used 4way OR gate 
+    //Instead we can use 8way OR gate too which I have used here!!
+    Or8Way(in=low, out=orLow);
+    Or8Way(in=high, out=orHigh);
+    Or(a=orLow, b=orHigh, out=orAny);
+    Not(in=orAny, out=zr);
+}
