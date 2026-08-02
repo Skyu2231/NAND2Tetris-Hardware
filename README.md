@@ -66,7 +66,7 @@ System-Hardware
 |----------|-------|:------:|:-------------:|
 | Project 1 | Boolean Logic | Complete | [Open](./Project1-Boolean_Logic/README.md) |
 | Project 2 | Boolean Arithmetic | Complete | [Open](./Project2-Boolean_Arithmetic/README.md) |
-| Project 3 | Sequential Logic | Upcoming | Coming Soon |
+| Project 3 | Sequential Logic | In Progress | Coming Soon |
 | Project 4 | Machine Language | Upcoming | Coming Soon |
 | Project 5 | Computer Architecture | Upcoming | Coming Soon |
 | Project 6 | Assembler | Upcoming | Coming Soon |
