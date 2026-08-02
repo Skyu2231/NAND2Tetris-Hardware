@@ -1,19 +1,19 @@
 # Project 1 – Boolean Logic
 
 > **Navigation**
->
-> **Home:** [System-Hardware](../README.md)  
-> **Next Project:** [Project 2 – Boolean Arithmetic](../Project2-Boolean_Arithmetic/README.md)
+
+- **Home:** [System-Hardware](../README.md)
+- **Next Project:** [Project 2 – Boolean Arithmetic](../Project2-Boolean_Arithmetic/README.md)
 
 ---
 
 # Overview
 
-Boolean Logic forms the foundation of all digital computers.
+Project 1 introduces the fundamental concepts of **Boolean Logic** using the Hardware Description Language (HDL).
 
-In this project, the objective is to build a collection of basic logic gates using **Hardware Description Language (HDL)**. Every chip is ultimately constructed from the primitive **NAND** gate, demonstrating that NAND is a **Universal Gate**.
+The objective is to construct elementary logic gates using only the **NAND** gate and understand how these gates become the building blocks of larger digital systems.
 
-These basic chips will later be reused to build arithmetic circuits, memory elements, and eventually a complete computer.
+By the end of this project, you will have implemented the core combinational logic circuits that will be reused throughout the remaining NAND2Tetris projects.
 
 ---
 
@@ -23,39 +23,57 @@ After completing this project, you should be able to:
 
 - Understand Boolean Algebra
 - Write HDL programs
-- Build combinational logic circuits
-- Design reusable hardware components
+- Build combinational circuits
 - Understand hierarchical chip design
+- Work with single-bit and multi-bit buses
+- Understand multiplexing and demultiplexing
+
+---
+
+# Project Structure
+
+```
+Project1-Boolean_Logic
+│
+├── README.md
+│
+├── assets
+│   ├── not
+│   ├── and
+│   ├── or
+│   ├── xor
+│   ├── mux
+│   ├── dmux
+│   ├── not16
+│   ├── mux4way16
+│   └── or8way
+│
+├── And.hdl
+├── DMux.hdl
+├── Mux.hdl
+├── Not.hdl
+├── Not16.hdl
+├── Or.hdl
+├── Or8Way.hdl
+├── Xor.hdl
+└── Mux4Way16.hdl
+```
 
 ---
 
 # Chips Implemented
 
-| Chip | Description | Status |
-|-------|-------------|:------:|
-| Not | Inverts a single input bit | Complete |
-| And | Logical AND operation | Complete |
-| Or | Logical OR operation | Complete |
-| Xor | Exclusive OR operation | Complete |
-| Mux | 2-way Multiplexer | Complete |
-| DMux | 2-way Demultiplexer | Complete |
-| Not16 | 16-bit NOT operation | Complete |
-| Mux4Way16 | 4-way 16-bit Multiplexer | Complete |
-| Or8Way | OR across eight inputs | Complete |
-
----
-
-# Boolean Logic
-
-Boolean Logic operates on only two values.
-
-```
-0 → LOW → FALSE
-
-1 → HIGH → TRUE
-```
-
-Every digital circuit is constructed using combinations of logic gates that manipulate these binary values.
+| Chip | Description |
+|------|-------------|
+| Not | Logical Inverter |
+| And | Logical AND Gate |
+| Or | Logical OR Gate |
+| Xor | Exclusive OR Gate |
+| Mux | 2-way Multiplexer |
+| DMux | 2-way Demultiplexer |
+| Not16 | 16-bit Inverter |
+| Mux4Way16 | 4-way 16-bit Multiplexer |
+| Or8Way | OR across eight inputs |
 
 ---
 
@@ -67,33 +85,43 @@ Every digital circuit is constructed using combinations of logic gates that mani
 
 ## Theory
 
-The NOT gate produces the complement of its input.
+The NOT gate is the simplest logic gate.
 
-If the input is **0**, the output becomes **1**.
+It produces the complement of its input.
 
-If the input is **1**, the output becomes **0**.
-
-### Boolean Expression
+Boolean Expression
 
 ```
 OUT = ¬A
 ```
 
-### HDL Design Idea
+---
 
-Constructed using a single NAND gate whose inputs are tied together.
+## Truth Table
+
+<p align="center">
+
+<img src="./assets/not/truth-table.png" width="450">
+
+</p>
 
 ---
 
-### Truth Table
+## Circuit Diagram
 
-> **Insert Truth Table Here**
+<p align="center">
+
+<img src="./assets/not/circuit-diagram.png" width="450">
+
+</p>
 
 ---
 
-### Circuit Diagram
+## HDL Design
 
-> **Insert Circuit Diagram Here**
+The implementation ties both inputs of the NAND gate together.
+
+This causes the NAND gate to behave exactly like a NOT gate.
 
 ---
 
@@ -101,31 +129,41 @@ Constructed using a single NAND gate whose inputs are tied together.
 
 ## Theory
 
-The AND gate outputs **HIGH** only when **both inputs are HIGH**.
+The AND gate outputs HIGH only when both inputs are HIGH.
 
-It is commonly used whenever multiple conditions must be satisfied simultaneously.
-
-### Boolean Expression
+Boolean Expression
 
 ```
 OUT = A • B
 ```
 
-### HDL Design Idea
+---
 
-Built by combining NAND and NOT gates.
+## Truth Table
+
+<p align="center">
+
+<img src="./assets/and/truth-table.png" width="450">
+
+</p>
 
 ---
 
-### Truth Table
+## Circuit Diagram
 
-> **Insert Truth Table Here**
+<p align="center">
+
+<img src="./assets/and/circuit-diagram.png" width="450">
+
+</p>
 
 ---
 
-### Circuit Diagram
+## HDL Design
 
-> **Insert Circuit Diagram Here**
+The AND gate is built using NAND followed by a NOT gate.
+
+This demonstrates how NAND can reproduce the functionality of an AND gate.
 
 ---
 
@@ -135,27 +173,37 @@ Built by combining NAND and NOT gates.
 
 The OR gate outputs HIGH whenever at least one input is HIGH.
 
-### Boolean Expression
+Boolean Expression
 
 ```
 OUT = A + B
 ```
 
-### HDL Design Idea
+---
 
-Implemented using De Morgan's Law together with NAND gates.
+## Truth Table
+
+<p align="center">
+
+<img src="./assets/or/truth-table.png" width="450">
+
+</p>
 
 ---
 
-### Truth Table
+## Circuit Diagram
 
-> **Insert Truth Table Here**
+<p align="center">
+
+<img src="./assets/or/circuit-diagram.png" width="450">
+
+</p>
 
 ---
 
-### Circuit Diagram
+## HDL Design
 
-> **Insert Circuit Diagram Here**
+Implemented using De Morgan's Law.
 
 ---
 
@@ -165,89 +213,113 @@ Implemented using De Morgan's Law together with NAND gates.
 
 The XOR gate outputs HIGH only when the two inputs are different.
 
-This gate becomes one of the most important building blocks for arithmetic circuits, especially the Half Adder.
+This gate becomes essential in arithmetic circuits.
 
-### Boolean Expression
+Boolean Expression
 
 ```
 OUT = A ⊕ B
 ```
 
-### HDL Design Idea
+---
 
-Constructed by combining previously implemented gates.
+## Truth Table
+
+<p align="center">
+
+<img src="./assets/xor/truth-table.png" width="450">
+
+</p>
 
 ---
 
-### Truth Table
+## Circuit Diagram
 
-> **Insert Truth Table Here**
+<p align="center">
 
----
+<img src="./assets/xor/circuit-diagram.png" width="450">
 
-### Circuit Diagram
-
-> **Insert Circuit Diagram Here**
+</p>
 
 ---
 
-# MUX (Multiplexer)
+## HDL Design
+
+Constructed using previously implemented gates.
+
+---
+
+# MUX
 
 ## Theory
 
-A Multiplexer selects one of two input signals depending on the value of the selector bit.
+A Multiplexer selects one of two inputs depending on the selector bit.
 
 ```
-sel = 0
+sel = 0 → A
 
-Output = A
-
-sel = 1
-
-Output = B
+sel = 1 → B
 ```
 
-### HDL Design Idea
+---
 
-The selector determines which input reaches the output using NOT, AND, and OR gates.
+## Truth Table
+
+<p align="center">
+
+<img src="./assets/mux/truth-table.png" width="500">
+
+</p>
 
 ---
 
-### Truth Table
+## Circuit Diagram
 
-> **Insert Truth Table Here**
+<p align="center">
 
----
+<img src="./assets/mux/circuit-diagram.png" width="500">
 
-### Circuit Diagram
-
-> **Insert Circuit Diagram Here**
+</p>
 
 ---
 
-# DMUX (Demultiplexer)
+## HDL Design
+
+Uses NOT, AND and OR gates to route the selected input to the output.
+
+---
+
+# DMUX
 
 ## Theory
 
-A Demultiplexer performs the opposite operation of a Multiplexer.
-
-It routes one input to one of two outputs depending on the selector.
-
-### HDL Design Idea
-
-The selector controls which output receives the input signal.
+A Demultiplexer routes one input to one of two outputs depending on the selector.
 
 ---
 
-### Truth Table
+## Truth Table
 
-> **Insert Truth Table Here**
+<p align="center">
+
+<img src="./assets/dmux/truth-table.png" width="500">
+
+</p>
 
 ---
 
-### Circuit Diagram
+## Circuit Diagram
 
-> **Insert Circuit Diagram Here**
+<p align="center">
+
+<img src="./assets/dmux/circuit-diagram.png" width="500">
+
+</p>
+
+---
+
+## HDL Design
+
+Uses NOT and AND gates to direct the input signal toward the selected output.
 
 ---
 
@@ -255,19 +327,23 @@ The selector controls which output receives the input signal.
 
 ## Theory
 
-NOT16 extends the single-bit NOT gate to a 16-bit bus.
-
-Each bit is independently inverted.
-
-### HDL Design Idea
-
-Use sixteen NOT gates operating in parallel.
+Performs the NOT operation independently on each bit of a 16-bit input bus.
 
 ---
 
-### Circuit Diagram
+## Circuit Diagram
 
-> **Insert Circuit Diagram Here**
+<p align="center">
+
+<img src="./assets/not16/circuit-diagram.png" width="650">
+
+</p>
+
+---
+
+## HDL Design
+
+Implemented using sixteen NOT gates operating in parallel.
 
 ---
 
@@ -275,19 +351,25 @@ Use sixteen NOT gates operating in parallel.
 
 ## Theory
 
-MUX4Way16 selects one of four 16-bit input buses.
+Selects one of four 16-bit input buses.
 
-Two selector bits determine which input is forwarded to the output.
-
-### HDL Design Idea
-
-Constructed hierarchically using multiple MUX chips.
+Two selector bits determine which input reaches the output.
 
 ---
 
-### Circuit Diagram
+## Circuit Diagram
 
-> **Insert Circuit Diagram Here**
+<p align="center">
+
+<img src="./assets/mux4way16/circuit-diagram.png" width="650">
+
+</p>
+
+---
+
+## HDL Design
+
+Built hierarchically using multiple MUX components.
 
 ---
 
@@ -295,43 +377,35 @@ Constructed hierarchically using multiple MUX chips.
 
 ## Theory
 
-OR8Way computes the logical OR of eight separate inputs.
+Computes the OR of eight input signals.
 
-If any one of the eight inputs is HIGH, the output becomes HIGH.
-
-### HDL Design Idea
-
-Combine several OR gates in a tree structure until a single output remains.
+If any input is HIGH, the output becomes HIGH.
 
 ---
 
-### Circuit Diagram
+## Circuit Diagram
 
-> **Insert Circuit Diagram Here**
+<p align="center">
+
+<img src="./assets/or8way/circuit-diagram.png" width="650">
+
+</p>
+
+---
+
+## HDL Design
+
+Implemented using a tree of OR gates.
 
 ---
 
 # Common Mistakes
 
-- Confusing Multiplexer with Demultiplexer.
-- Treating XOR the same as OR.
-- Forgetting that selector bits determine routing.
-- Mixing up the order of selector inputs in MUX4Way16.
-- Not building chips hierarchically using previously implemented components.
-
----
-
-# Key Takeaways
-
-By the end of this project, you will have learned:
-
-- Fundamental Boolean operations
-- Combinational circuit design
-- HDL syntax and chip construction
-- Hierarchical hardware design
-- The role of logic gates in building larger digital systems
-
-These chips serve as the foundation for **Project 2 – Boolean Arithmetic**, where they are combined to build adders and, eventually, the Arithmetic Logic Unit (ALU).
+- Confusing XOR with OR.
+- Mixing Multiplexer and Demultiplexer.
+- Incorrect selector bit ordering.
+- Forgetting that buses operate bit-by-bit.
+- Building complex chips directly instead of reusing simpler chips.
 
 ---
 
@@ -344,6 +418,6 @@ These chips serve as the foundation for **Project 2 – Boolean Arithmetic**, wh
 
 # Navigation
 
-**Previous:** [Home](../README.md)
+**Home:** [System-Hardware](../README.md)
 
 **Next:** [Project 2 – Boolean Arithmetic](../Project2-Boolean_Arithmetic/README.md)
