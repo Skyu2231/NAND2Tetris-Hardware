@@ -1,226 +1,186 @@
-# NAND2Tetris HDL Solutions & Logic Explanations
+# System-Hardware
 
-> A collection of HDL implementations for the **NAND2Tetris** course along with the logic behind each chip to help students understand *how* and *why* each solution works.
+> A comprehensive collection of HDL implementations, digital logic concepts, and computer hardware design projects inspired by the **NAND2Tetris** course.
 
----
-
-## About
-
-This repository contains my solutions for the **NAND2Tetris** course projects.
-
-The purpose of this repository is **not only to provide working HDL implementations**, but also to explain the logic behind each chip so that beginners can understand the design process instead of simply copying the code.
-
-As I progress through the course, I will continuously update this repository with:
-
--  HDL implementations
--  Logic explanations
--  Circuit design intuition
--  Notes and tips
--  Future project solutions
+This repository is designed for students who want to understand the logic behind digital hardware components rather than simply copy HDL solutions.
 
 ---
 
-## Goals
+# About
 
-- Help beginners understand NAND2Tetris HDL.
-- Explain the reasoning behind every implementation.
-- Provide clean and readable HDL code.
-- Serve as a reference while studying the course.
+This repository documents my journey through the **NAND2Tetris** course, covering the design and implementation of digital hardware using **Hardware Description Language (HDL)**.
+
+Beginning with a single **NAND gate**, the course gradually builds the components required for a complete computer system. The goal of this repository is not only to provide working HDL implementations but also to explain the reasoning and theory behind each design.
+
+Each completed project includes:
+
+- HDL implementations
+- Theory behind every chip
+- Logic explanations
+- Truth tables (where applicable)
+- Design intuition
+- Notes and common implementation mistakes
+
+As I progress through the course, the repository will continue to expand with documentation and implementations for future projects.
+
+---
+
+# Goals
+
+- Learn digital logic from first principles.
+- Understand HDL instead of memorizing implementations.
+- Document the reasoning behind every hardware component.
+- Build a structured reference for future learners.
 
 ---
 
 # Repository Structure
 
-```
-.
+```text
+System-Hardware
+│
+├── README.md
+├── LICENSE
+├── .gitignore
+│
 ├── Project1-Boolean_Logic
-│   ├── And.hdl
-│   ├── Or.hdl
-│   ├── Not.hdl
-│   ├── Xor.hdl
-│   ├── mux.hdl
-│   ├── dmux.hdl
-│   ├── Not16.hdl
-│   ├── Mux4Way16.hdl
-│   └── Or8Way.hdl
+│   ├── README.md
+│   ├── *.hdl
 │
 ├── Project2-Boolean_Arithmetic
-│   ├── HalfAdder.hdl
-│   └── FullAdder.hdl
+│   ├── README.md
+│   ├── *.hdl
 │
-└── README.md
+├── Project3-Sequential_Logic
+│   ├── README.md
+│   ├── *.hdl
+│
+└── ...
 ```
 
 ---
 
-# Completed Projects
+# Repository Roadmap
 
-## Project 1 – Boolean Logic
-
-| Chip | Status | Description |
-|------|:------:|-------------|
-| Not | ✅ | Inverts a single bit |
-| And | ✅ | Logical AND gate |
-| Or | ✅ | Logical OR gate |
-| Xor | ✅ | Exclusive OR gate |
-| Mux | ✅ | 2-way Multiplexer |
-| DMux | ✅ | 2-way Demultiplexer |
-| Not16 | ✅ | 16-bit NOT |
-| Mux4Way16 | ✅ | 4-way 16-bit Multiplexer |
-| Or8Way | ✅ | OR across 8 inputs |
-
----
-
-## Project 2 – Boolean Arithmetic
-
-| Chip | Status | Description |
-|------|:------:|-------------|
-| HalfAdder | ✅ | Adds two bits |
-| FullAdder | ✅ | Adds three bits (including carry) |
-
-More chips will be added soon.
+| Project | Topic | Status | Documentation |
+|----------|-------|:------:|:-------------:|
+| Project 1 | Boolean Logic | Complete | [Open](./Project1-Boolean_Logic/README.md) |
+| Project 2 | Boolean Arithmetic | In Progress | [Open](./Project2-Boolean_Arithmetic/README.md) |
+| Project 3 | Sequential Logic | Upcoming | Coming Soon |
+| Project 4 | Machine Language | Upcoming | Coming Soon |
+| Project 5 | Computer Architecture | Upcoming | Coming Soon |
+| Project 6 | Assembler | Upcoming | Coming Soon |
+| Project 7 | VM Translator I | Upcoming | Coming Soon |
+| Project 8 | VM Translator II | Upcoming | Coming Soon |
+| Project 9 | High-Level Programs | Upcoming | Coming Soon |
+| Project 10 | Compiler I | Upcoming | Coming Soon |
+| Project 11 | Compiler II | Upcoming | Coming Soon |
+| Project 12 | Operating System | Upcoming | Coming Soon |
 
 ---
 
-# Upcoming Projects
+# Documentation Structure
 
-- [ ] Add16
-- [ ] Inc16
-- [ ] ALU
-- [ ] Sequential Logic
-- [ ] Memory
-- [ ] CPU
-- [ ] Computer
-- [ ] Machine Language
-- [ ] Assembler
-- [ ] VM Translator
-- [ ] Compiler
-- [ ] Operating System
+Each project contains its own dedicated `README.md` that includes:
 
----
-
-# Explanation Format( in progress )
-
-Every chip will eventually include:
-
-- Problem Statement
-- Logic Used
-- Truth Table (where applicable)
-- Circuit Idea
-- HDL Implementation
-- Step-by-step Explanation
+- Project Overview
+- Theory
+- Learning Objectives
+- Chip Descriptions
+- Truth Tables
+- Boolean Expressions
+- HDL Logic
+- Circuit Explanation
 - Common Mistakes
-- Time-saving Tips
+- References
 
-Example:
-
-```
-Chip: HalfAdder
-
-Inputs:
-A
-B
-
-Outputs:
-Sum
-Carry
-
-Logic:
-
-Sum   = A XOR B
-Carry = A AND B
-```
-
-This makes it easier to understand the implementation rather than memorizing the code.
+This keeps the repository organized while allowing every project to be explored independently.
 
 ---
 
-# Requirements
+# Getting Started
 
-- NAND2Tetris Hardware Simulator
-- HDL files provided in the course
-
-Download from the official NAND2Tetris website.
-
----
-
-# How to Use
-
-1. Clone the repository
+## Clone the Repository
 
 ```bash
-git clone https://github.com/Skyu2231/NAND2Tetris-Hardware.git
+git clone https://github.com/Skyu2231/System-Hardware.git
 ```
 
-2. Open the Hardware Simulator.
+## Requirements
 
-3. Load the required `.hdl` file.
+- NAND2Tetris Hardware Simulator
+- Official NAND2Tetris Project Files
 
-4. Run the corresponding `.tst` file from the NAND2Tetris project.
+## Running a Chip
 
-5. Compare your implementation or study the logic provided.
+1. Open the Hardware Simulator.
+2. Load the required `.hdl` file.
+3. Run the corresponding `.tst` file.
+4. Verify that all tests pass.
+5. Read the accompanying project documentation to understand the implementation.
 
 ---
 
 # Learning Resources
 
+- *The Elements of Computing Systems* by Noam Nisan and Shimon Schocken
 - Official NAND2Tetris Course
-- NAND2Tetris Book:
-  *The Elements of Computing Systems*
+- NAND2Tetris Hardware Simulator
 
 ---
 
-# Note for Students
+# Contributing
 
-This repository is intended as a **learning resource**.
+Contributions are welcome.
 
-I strongly encourage you to:
+You can contribute by:
 
-- Try solving each project on your own first.
-- Use this repository only after making your own attempt.
-- Focus on understanding the logic instead of copying the implementation.
+- Improving HDL implementations
+- Fixing bugs
+- Enhancing explanations
+- Correcting documentation
+- Improving formatting
 
-You'll learn much more that way.
-
----
-
-# Contributions
-
-Suggestions, improvements, and corrections are always welcome.
-
-If you find:
-
-- Better HDL implementations
-- Simpler logic
-- Bugs
-- Typographical errors
-
-Feel free to open an issue or submit a pull request.
+Feel free to open an Issue or submit a Pull Request.
 
 ---
-
-
 
 # Progress
 
-| Project | Status |
-|----------|:------:|
-| Boolean Logic |  Complete |
-| Boolean Arithmetic |  In Progress |
-| Sequential Logic |  Upcoming |
-| Machine Language |  Upcoming |
-| Computer Architecture |  Upcoming |
-| Assembler |  Upcoming |
-| VM Translator |  Upcoming |
-| Compiler |  Upcoming |
-| Operating System |  Upcoming |
+```
+Projects Completed: 2 / 12
+```
+
+| Stage | Status |
+|--------|:------:|
+| Boolean Logic | Complete |
+| Boolean Arithmetic | In Progress |
+| Sequential Logic | Upcoming |
+| Machine Language | Upcoming |
+| Computer Architecture | Upcoming |
+| Assembler | Upcoming |
+| VM Translator | Upcoming |
+| Compiler | Upcoming |
+| Operating System | Upcoming |
 
 ---
 
-## License
+# Support
 
-This repository is released under the MIT License.
+If this repository helps you understand digital hardware design or the NAND2Tetris course, consider starring the repository.
+
+It motivates me to continue documenting the remaining projects with detailed explanations.
 
 ---
 
-### Lesss Go!!!
+# License
+
+This project is licensed under the MIT License.
+
+---
+### less go!!
+
+<p align="center">
+<b>Happy Building!</b><br>
+<em>From a NAND Gate to a Complete Computer.</em>
+</p>
