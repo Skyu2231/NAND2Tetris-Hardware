@@ -1,4 +1,5 @@
 //This is hdl code for Hack-ALU
+//THIS HDL CODE IS WRITTEN IN REFERRENCE TO BLOCK-DIAGRAM ATTACHED IN README.md in ALU part
 CHIP ALU {
     IN
         x[16], y[16],
@@ -15,15 +16,12 @@ CHIP ALU {
     Mux16(a=x, b=false, sel=zx, out=xZeroed);
     Not16(in=xZeroed, out=xNot);
     Mux16(a=xZeroed, b=xNot, sel=nx, out=xFinal);
-
     Mux16(a=y, b=false, sel=zy, out=yZeroed);
     Not16(in=yZeroed, out=yNot);
     Mux16(a=yZeroed, b=yNot, sel=ny, out=yFinal);
-
     And16(a=xFinal, b=yFinal, out=andOut);
     Add16(a=xFinal, b=yFinal, out=addOut);
     Mux16(a=andOut, b=addOut, sel=f, out=funcOut);
-
     Not16(in=funcOut, out=notOut);
     Mux16(
         a=funcOut,
