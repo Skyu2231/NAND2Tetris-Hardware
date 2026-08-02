@@ -178,9 +178,7 @@ It motivates me to continue documenting the remaining projects with detailed exp
 This project is licensed under the MIT License.
 
 ---
-### less go!!
+# lESS g0!!
 
 <p align="center">
-<b>Happy Building!</b><br>
-<em>From a NAND Gate to a Complete Computer.</em>
-</p>
+<b>BRO DO YOU EVEN CODE???</b>
