@@ -154,8 +154,8 @@ Projects Completed: 2 / 12
 | Stage | Status |
 |--------|:------:|
 | Boolean Logic | Complete |
-| Boolean Arithmetic | In Progress |
-| Sequential Logic | Upcoming |
+| Boolean Arithmetic | Complete |
+| Sequential Logic | In Progress |
 | Machine Language | Upcoming |
 | Computer Architecture | Upcoming |
 | Assembler | Upcoming |
